@@ -51,7 +51,7 @@ echo walletTotal($Wallet) . PHP_EOL;
 $customerChoice = readline('What coffee will you drink? 1 : Latte, 2 : Black_coffee, 3 : White_coffee');
 if ($customerChoice == 1) {
     $leftToPay = $coffee->Latte;
-    echo 'Latte, Cena 204'.PHP_EOL;
+    echo 'Latte, Price 204'.PHP_EOL;
     $Wallet = pay($leftToPay, $Wallet);
     echo walletTotal($Wallet) . PHP_EOL;
 } elseif ($customerChoice == 2){
