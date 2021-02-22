@@ -36,7 +36,7 @@ function walletTotal(array $arr): int
     foreach ($sums as $sum) {
         $total += $sum;
     }
-    echo 'Atlikums maka: ';
+    echo 'Balance wallet: ';
     return $total;
 }
 
@@ -48,7 +48,7 @@ $coffee->Black_coffee = 188;
 $coffee->White_coffee = 199;
 again:
 echo walletTotal($Wallet) . PHP_EOL;
-$customerChoice = readline('Kadu kafiju dzersiet? 1 : Latte, 2 : Black_coffee, 3 : White_coffee');
+$customerChoice = readline('What coffee will you drink? 1 : Latte, 2 : Black_coffee, 3 : White_coffee');
 if ($customerChoice == 1) {
     $leftToPay = $coffee->Latte;
     echo 'Latte, Cena 204'.PHP_EOL;
@@ -56,20 +56,20 @@ if ($customerChoice == 1) {
     echo walletTotal($Wallet) . PHP_EOL;
 } elseif ($customerChoice == 2){
     $leftToPay = $coffee->Black_coffee;
-    echo 'Melna Kafija, Cena 188'.PHP_EOL;
+    echo 'Black_coffee, Price 188'.PHP_EOL;
     $Wallet = pay($leftToPay, $Wallet);
     echo walletTotal($Wallet) . PHP_EOL;
 }elseif ($customerChoice == 3){
     $leftToPay = $coffee->White_coffee;
-    echo 'Balta Kafija, Cena 199'.PHP_EOL;
+    echo 'White_coffee, Price 199'.PHP_EOL;
     $Wallet = pay($leftToPay, $Wallet);
     echo walletTotal($Wallet) . PHP_EOL;
 }else {
-    echo 'Ievadiet pareizu izveli!'.PHP_EOL;
+    echo 'Enter the correct choice!'.PHP_EOL;
     goto again;
 }
-    echo ('Ludzu panemiet savu kafiju'.PHP_EOL);
-    $ask = readline('Vai gribat vel kafiju? y:press y, or no:press any other key'.PHP_EOL);
+    echo ('Please take your coffee'.PHP_EOL);
+    $ask = readline('Do you want more coffee? y:press y, or no:press any other key'.PHP_EOL);
 if ($ask == 'y'){
     goto again;
 } else {
@@ -81,17 +81,17 @@ if ($ask == 'y'){
 
         retry:
         while ($change != 0) {
-            $customerPays = readline(PHP_EOL . 'Iemetiet naudu: ');
+            $customerPays = readline(PHP_EOL . 'Add money: ');
             foreach ($arr as $key => $money) {
                 if (!array_key_exists($customerPays, $arr)) {
-                    echo 'Ieliec pareizu monetu!' . PHP_EOL;
+                    echo 'Insert the correct coin!' . PHP_EOL;
                     goto retry;
                 } elseif ($customerPays == $key && $money > 0) {
                     $arr[$key] -= 1;
 
                     $change -= intval($customerPays);
                     if ($change < 0) {
-                        echo 'Jums pienakas atlikums: +' . abs($change) . PHP_EOL;
+                        echo 'Here is your change: +' . abs($change) . PHP_EOL;
                         while ($change < 0) {
                             switch ($change) {
                                 case $change <= -200 :
@@ -129,11 +129,11 @@ if ($ask == 'y'){
                             }
                         }
                     } else {
-                        echo 'Atlicis maksat: ' . $change . PHP_EOL;
+                        echo 'Left to pay: ' . $change . PHP_EOL;
                     }
 
                 } elseif ($customerPays == $key && $money == 0) {
-                    echo 'Sis monetas ir beigusas. Izvelies citu monetu!';
+                    echo 'This coin is over. Choose another coin!';
                     goto retry;
                 }
             }
