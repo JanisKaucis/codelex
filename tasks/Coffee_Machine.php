@@ -68,75 +68,75 @@ if ($customerChoice == 1) {
     echo 'Enter the correct choice!'.PHP_EOL;
     goto again;
 }
-    echo ('Please take your coffee'.PHP_EOL);
-    $ask = readline('Do you want more coffee? y:press y, or no:press any other key'.PHP_EOL);
+echo ('Please take your coffee'.PHP_EOL);
+$ask = readline('Do you want more coffee? y:press y, or no:press any other key'.PHP_EOL);
 if ($ask == 'y'){
     goto again;
 } else {
     exit('Bye!');
 }
 
-    function pay(int $change,array $arr): array
-    {
+function pay(int $change,array $arr): array
+{
 
-        retry:
-        while ($change != 0) {
-            $customerPays = readline(PHP_EOL . 'Add money: ');
-            foreach ($arr as $key => $money) {
-                if (!array_key_exists($customerPays, $arr)) {
-                    echo 'Insert the correct coin!' . PHP_EOL;
-                    goto retry;
-                } elseif ($customerPays == $key && $money > 0) {
-                    $arr[$key] -= 1;
+    retry:
+    while ($change != 0) {
+        $customerPays = readline(PHP_EOL . 'Add money: ');
+        foreach ($arr as $key => $money) {
+            if (!array_key_exists($customerPays, $arr)) {
+                echo 'Insert the correct coin!' . PHP_EOL;
+                goto retry;
+            } elseif ($customerPays == $key && $money > 0) {
+                $arr[$key] -= 1;
 
-                    $change -= intval($customerPays);
-                    if ($change < 0) {
-                        echo 'Here is your change: +' . abs($change) . PHP_EOL;
-                        while ($change < 0) {
-                            switch ($change) {
-                                case $change <= -200 :
-                                    $arr[200] += 1;
-                                    $change += 200;
-                                    break;
-                                case $change <= -100 :
-                                    $arr[100] += 1;
-                                    $change += 100;
-                                    break;
-                                case $change <= -50 :
-                                    $arr[50] += 1;
-                                    $change += 50;
-                                    break;
-                                case $change <= -20 :
-                                    $arr[20] += 1;
-                                    $change += 20;
-                                    break;
-                                case $change <= -10 :
-                                    $arr[10] += 1;
-                                    $change += 10;
-                                    break;
-                                case $change <= -5 :
-                                    $arr[5] += 1;
-                                    $change += 5;
-                                    break;
-                                case $change <= -2 :
-                                    $arr[2] += 1;
-                                    $change += 2;
-                                    break;
-                                case $change <= -1 :
-                                    $arr[1] += 1;
-                                    $change += 1;
-                                    break;
-                            }
+                $change -= intval($customerPays);
+                if ($change < 0) {
+                    echo 'Here is your change: +' . abs($change) . PHP_EOL;
+                    while ($change < 0) {
+                        switch ($change) {
+                            case $change <= -200 :
+                                $arr[200] += 1;
+                                $change += 200;
+                                break;
+                            case $change <= -100 :
+                                $arr[100] += 1;
+                                $change += 100;
+                                break;
+                            case $change <= -50 :
+                                $arr[50] += 1;
+                                $change += 50;
+                                break;
+                            case $change <= -20 :
+                                $arr[20] += 1;
+                                $change += 20;
+                                break;
+                            case $change <= -10 :
+                                $arr[10] += 1;
+                                $change += 10;
+                                break;
+                            case $change <= -5 :
+                                $arr[5] += 1;
+                                $change += 5;
+                                break;
+                            case $change <= -2 :
+                                $arr[2] += 1;
+                                $change += 2;
+                                break;
+                            case $change <= -1 :
+                                $arr[1] += 1;
+                                $change += 1;
+                                break;
                         }
-                    } else {
-                        echo 'Left to pay: ' . $change . PHP_EOL;
                     }
-
-                } elseif ($customerPays == $key && $money == 0) {
-                    echo 'This coin is over. Choose another coin!';
-                    goto retry;
+                } else {
+                    echo 'Left to pay: ' . $change . PHP_EOL;
                 }
+
+            } elseif ($customerPays == $key && $money == 0) {
+                echo 'This coin is over. Choose another coin!';
+                goto retry;
             }
         }
-        return $arr;
     }
+    return $arr;
+}
