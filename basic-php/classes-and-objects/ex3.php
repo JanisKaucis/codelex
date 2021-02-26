@@ -72,5 +72,5 @@ class Odometer
 
 $odometer = new Odometer(999900);
 $fuelGauge = new FuelGauge(15);
-echo 'Miles: ' . $odometer->getMileage() . ', Fuel: ' . $fuelGauge->getAmountOfFuel() . PHP_EOL;
+
 $odometer->drive($fuelGauge);
