@@ -2,7 +2,7 @@
 
 class FuelGauge
 {
-    public $amountOfFuel;
+    private $amountOfFuel;
 
     /**
      * FuelGauge constructor.
@@ -18,17 +18,22 @@ class FuelGauge
         return $this->amountOfFuel;
     }
 
+    public function setAmountOfFuel($amountOfFuel)
+    {
+        $this->amountOfFuel = $amountOfFuel;
+    }
+
     public function addFuel()
     {
         do {
-            $amount = readline('Add fuel please. Max 70 liters') . PHP_EOL;
-            echo 'Max fuel you can fill is: ' .(70 - round($this->amountOfFuel)).PHP_EOL;
+            $amount = readline('Add fuel please. Max 70 liters: ') . PHP_EOL;
+            echo 'Max fuel you can fill is: ' . (70 - round($this->amountOfFuel)) . PHP_EOL;
 
-        } while ($amount >= 70 - $this->amountOfFuel);
+        } while ($amount >= 70 - $this->amountOfFuel || $amount <= 0);
 
-        while ($this->amountOfFuel < intval($amount)-1) {
+        while ($this->amountOfFuel < intval($amount) - 1) {
             $this->amountOfFuel++;
-            echo 'Fuel refilling: ' . round($this->amountOfFuel).PHP_EOL;
+            echo 'Fuel refilling: ' . round($this->amountOfFuel) . PHP_EOL;
             usleep(200000);
         }
     }
@@ -36,7 +41,7 @@ class FuelGauge
 
 class Odometer
 {
-    public $mileage;
+    private $mileage;
 
     /**
      * Odometer constructor.
@@ -47,22 +52,20 @@ class Odometer
         $this->mileage = $mileage;
     }
 
-    public function getMileage()
-    {
-        return $this->mileage;
-    }
-
     public function drive(FuelGauge $fuelGauge)
     {
+        $fuel = $fuelGauge->getAmountOfFuel();
         while (true) {
             while ($this->mileage <= 999999) {
 
-                echo 'Miles: '.$this->mileage.', Fuel: '.round($fuelGauge->amountOfFuel).PHP_EOL;
+                echo 'Miles: ' . $this->mileage . ', Fuel: ' . round($fuelGauge->getAmountOfFuel()) . PHP_EOL;
                 $this->mileage++;
-                $fuelGauge->amountOfFuel -=0.1;
+
+                $fuelGauge->setAmountOfFuel($fuel -= 0.1);
                 usleep(50000);
-                if ($fuelGauge->amountOfFuel <= 0){
+                if ($fuelGauge->getAmountOfFuel() <= 0) {
                     $fuelGauge->addFuel();
+                    $fuel = $fuelGauge->getAmountOfFuel();
                 }
             }
             $this->mileage = 0;
