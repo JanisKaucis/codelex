@@ -86,7 +86,7 @@ class NewGame
             $this->playArray[] = $thirdRandomElement;
             echo $firstRandomElement . ' ' . $secondRandomElement . ' ' . $thirdRandomElement;
             echo PHP_EOL;
-            usleep(500000);
+            usleep(250000);
         }
     }
 
@@ -103,41 +103,53 @@ class NewGame
 
             foreach ($this->getWinningArray() as $winningValue) {
                 foreach ($input->getElements() as $key => $value) {
-                    if ($winningValue == $key) {
+                    if ($winningValue == 'G' || $winningValue == 'e' || $winningValue == 'a' || $winningValue == 'b') {
+                        $counter = 5;
 
-//                        $freeFiveSpinCounter = 0;
-//                        while ($key == 'G' || $key == 'e' || $key == 'a' || $key == 'b') {
-//                            $counter = 1;
-//                            $freeFiveSpinCounter+=5;
-//                            $this->setPlayArray();
-//                            $this->setWinningArray();
-//                            for ($i = 0; $i < 5; $i++) {
-//                                $totalCounter = $freeFiveSpinCounter+$counter;
-//                                $counter--;
-//                                $this->spinSlots($input);
-//                                $this->isWinning();
-//                                echo $totalCounter . 'x more spins left' . PHP_EOL;
-//                                if ($winningValue == $key) {
-//                                    switch ($input->bet) {
-//                                        case $input->bet == 10 :
-//                                            $this->betWon = $value;
-//                                            break;
-//                                        case $input->bet == 20 :
-//                                            $this->betWon = $value * 2;
-//                                            break;
-//                                        case $input->bet == 30 :
-//                                            $this->betWon = $value * 3;
-//                                            break;
-//                                        case $input->bet == 40 :
-//                                            $this->betWon = $value * 4;
-//                                            break;
-//                                        case $input->bet == 50 :
-//                                            $this->betWon = $value * 5;
-//                                            break;
-//                                    }
-//                                }
-//                            }
-//                        }
+                        echo 'you won ' . $counter . ' Free spins' . PHP_EOL;
+                        for ($i = 0; $i < $counter; $i++) {
+                            echo ($counter - $i) . 'x more spins left' . PHP_EOL;
+                            $this->setPlayArray();
+                            $this->setWinningArray();
+                            $this->spinSlots($input);
+                            $this->isWinning();
+                            foreach ($this->getWinningArray() as $winningValue) {
+                                foreach ($input->getElements() as $key => $value) {
+                                    if ($winningValue == 'G' || $winningValue == 'e' || $winningValue == 'a' || $winningValue == 'b') {
+                                        $counter += 5;
+                                        echo 'More spins won! Now ' . ($counter - $i - 1) . 'x spins left' . PHP_EOL;
+                                        break;
+                                    } else {
+                                        if ($winningValue == $key) {
+                                            switch ($input->bet) {
+                                                case $input->bet == 10 :
+                                                    $this->betWon = $value;
+                                                    break;
+                                                case $input->bet == 20 :
+                                                    $this->betWon = $value * 2;
+                                                    break;
+                                                case $input->bet == 30 :
+                                                    $this->betWon = $value * 3;
+                                                    break;
+                                                case $input->bet == 40 :
+                                                    $this->betWon = $value * 4;
+                                                    break;
+                                                case $input->bet == 50 :
+                                                    $this->betWon = $value * 5;
+                                                    break;
+                                            }
+                                            $this->totalWin += $this->betWon;
+                                            echo 'You won: ' . $this->betWon . PHP_EOL;
+                                        }
+                                    }
+                                }
+                            }
+
+                            $this->betWon = 0;
+
+                        }
+                    } elseif ($winningValue == $key) {
+
                         switch ($input->bet) {
                             case $input->bet == 10 :
                                 $this->betWon = $value;
@@ -155,11 +167,11 @@ class NewGame
                                 $this->betWon = $value * 5;
                                 break;
                         }
+                        $this->totalWin += $this->betWon;
+                        echo 'You won: ' . $this->betWon . PHP_EOL;
                     }
                 }
             }
-            echo 'You won: ' . $this->betWon . PHP_EOL;
-            $this->totalWin += $this->betWon;
             $this->betWon = 0;
             echo 'Balance left: ' . $input->getSum() . PHP_EOL;
             if ($input->getSum() > 0 && $input->getSum() < $input->getBet()) {
