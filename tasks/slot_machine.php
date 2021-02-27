@@ -51,7 +51,7 @@ class Input
 class NewGame
 {
     public array $playArray;
-    public array $winningElementArray;
+    public array $winningElementArray = [];
     public int $betWon = 0;
     public int $totalWin = 0;
 
@@ -86,7 +86,7 @@ class NewGame
             $this->playArray[] = $thirdRandomElement;
             echo $firstRandomElement . ' ' . $secondRandomElement . ' ' . $thirdRandomElement;
             echo PHP_EOL;
-            usleep(250000);
+            usleep(1);
         }
     }
 
@@ -98,13 +98,13 @@ class NewGame
             $input->setSum($input->getSum() - $input->getBet());
 
             $this->spinSlots($input);
-
+//            var_dump($this->winningElementArray);
             $this->isWinning();
-
+            $counter = 5;
             foreach ($this->getWinningArray() as $winningValue) {
                 foreach ($input->getElements() as $key => $value) {
-                    if ($winningValue == 'G' || $winningValue == 'e' || $winningValue == 'a' || $winningValue == 'b') {
-                        $counter = 5;
+                    if ($winningValue == 'G') {
+
 
                         echo 'you won ' . $counter . ' Free spins' . PHP_EOL;
                         for ($i = 0; $i < $counter; $i++) {
@@ -115,7 +115,7 @@ class NewGame
                             $this->isWinning();
                             foreach ($this->getWinningArray() as $winningValue) {
                                 foreach ($input->getElements() as $key => $value) {
-                                    if ($winningValue == 'G' || $winningValue == 'e' || $winningValue == 'a' || $winningValue == 'b') {
+                                    if ($winningValue == 'G') {
                                         $counter += 5;
                                         echo 'More spins won! Now ' . ($counter - $i - 1) . 'x spins left' . PHP_EOL;
                                         break;
@@ -148,6 +148,7 @@ class NewGame
                             $this->betWon = 0;
 
                         }
+                        break;
                     } elseif ($winningValue == $key) {
 
                         switch ($input->bet) {
@@ -192,25 +193,22 @@ class NewGame
     public
     function isWinning()
     {
-        switch ($this->getPlayArray()) {
-            case $this->getPlayArray()[0] == $this->getPlayArray()[1] && $this->getPlayArray()[1] == $this->getPlayArray()[2] :
+            if ($this->getPlayArray()[0] == $this->getPlayArray()[1] && $this->getPlayArray()[1] == $this->getPlayArray()[2]) {
                 $this->winningElementArray[] = $this->getPlayArray()[0];
-                break;
-            case $this->getPlayArray()[3] == $this->getPlayArray()[4] && $this->getPlayArray()[4] == $this->getPlayArray()[5] :
+            }
+            if ($this->getPlayArray()[3] == $this->getPlayArray()[4] && $this->getPlayArray()[4] == $this->getPlayArray()[5]){
                 $this->winningElementArray[] = $this->getPlayArray()[3];
-                break;
-            case $this->getPlayArray()[6] == $this->getPlayArray()[7] && $this->getPlayArray()[7] == $this->getPlayArray()[8] :
+            }
+
+            if ($this->getPlayArray()[6] == $this->getPlayArray()[7] && $this->getPlayArray()[7] == $this->getPlayArray()[8]){
                 $this->winningElementArray[] = $this->getPlayArray()[6];
-                break;
-            case $this->getPlayArray()[0] == $this->getPlayArray()[4] && $this->getPlayArray()[4] == $this->getPlayArray()[8] :
+            }
+            if ($this->getPlayArray()[0] == $this->getPlayArray()[4] && $this->getPlayArray()[4] == $this->getPlayArray()[8]){
                 $this->winningElementArray[] = $this->getPlayArray()[4];
-                break;
-            case $this->getPlayArray()[2] == $this->getPlayArray()[4] && $this->getPlayArray()[4] == $this->getPlayArray()[6] :
+            }
+            if ($this->getPlayArray()[2] == $this->getPlayArray()[4] && $this->getPlayArray()[4] == $this->getPlayArray()[6]){
                 $this->winningElementArray[] = $this->getPlayArray()[2];
-                break;
-            default :
-                $this->winningElementArray[] = 0;
-        }
+            }
     }
 }
 
