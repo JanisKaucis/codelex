@@ -86,7 +86,7 @@ class NewGame
             $this->playArray[] = $thirdRandomElement;
             echo $firstRandomElement . ' ' . $secondRandomElement . ' ' . $thirdRandomElement;
             echo PHP_EOL;
-            usleep(1);
+            sleep(1);
         }
     }
 
