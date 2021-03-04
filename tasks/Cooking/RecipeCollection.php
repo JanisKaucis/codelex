@@ -9,15 +9,18 @@ class RecipeCollection
         $this->recipes[] = $recipe;
     }
 
-    public function whatCanIMake(): void
+    public function whatCanIMake(Ingredients $ingredients): void
     {   /* @var $recipe Recipe */
-        $name = readline('Enter ingredient: ');
         foreach ($this->recipes as $recipe) {
-            if (!in_array($name, $recipe->getIngredients())) {
-                echo 'I wont make ' . $recipe->getName() . ' out of that' . PHP_EOL;
-            } else {
-                echo 'With ' . $name . ' I can make ' . $recipe->getName() . PHP_EOL;
+            $existingIngredients = array_intersect($recipe->getIngredients(), $ingredients->getIngredients());
+            foreach ($existingIngredients as $ingredient){
+                if (!in_array($ingredient,$recipe->getIngredients())) {
+                    echo 'I wont make ' . $recipe->getName() . ' out of '.$ingredient. PHP_EOL;
+                } else {
+                    echo 'With '.$ingredient.' I can make ' . $recipe->getName() . PHP_EOL;
+                    }
             }
+
         }
     }
 
@@ -31,7 +34,7 @@ class RecipeCollection
             } else {
                 echo $recipe->getName() . ': You are missing :';
                 foreach ($missingIngredients as $missingIngredient) {
-                    echo $missingIngredient . ', ';
+                    echo $missingIngredient . ' ';
                 }
                 echo PHP_EOL;
             }

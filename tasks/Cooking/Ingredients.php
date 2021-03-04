@@ -2,19 +2,19 @@
 
 class Ingredients
 {
-    private array $ingridients;
-
-    /**
-     * Ingridients constructor.
-     * @param array $ingridients
-     */
-    public function __construct(array $ingridients)
-    {
-        $this->ingridients = $ingridients;
-    }
+    private array $ingridients = [];
 
     public function getIngredients(): array
     {
         return $this->ingridients;
+    }
+    public function addIngredients(): void
+    {
+        $ingredientAmount = intval(readline('How many ingredients will you add?'));
+        do{
+            $addedIngredient = readline('Add ingredient: ');
+            $this->ingridients[] =  $addedIngredient;
+            $ingredientAmount--;
+        }while($ingredientAmount != 0);
     }
 }

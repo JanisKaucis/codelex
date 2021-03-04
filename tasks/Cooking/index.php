@@ -12,13 +12,14 @@ require_once 'Recipes.php';
 //With Tomato I can make turboSalad, NotTurboSalad
 //turboSalad: Missing- eggs, banana
 //NotTurboSalad: missing - nuts
-
+//['tomato', 'cucumber', 'eggs', 'banana', 'sausage']
 $recipes = new RecipeCollection();
-$ingredients = new Ingredients(['tomato', 'cucumber', 'eggs', 'banana', 'sausage']);
+$ingredients = new Ingredients();
+$ingredients->addIngredients();
 $turboSalad = new Recipe('turboSalad', ['tomato', 'eggs', 'cucumber', 'banana']);
 $cesarSalad = new Recipe('cesarSalad', ['tomato', 'cheese', 'cucumber', 'salad', 'oil']);
 $recipes->addRecipe($turboSalad);
 $recipes->addRecipe($cesarSalad);
 
-$recipes->whatCanIMake();
+$recipes->whatCanIMake($ingredients);
 $recipes->whatDoIMiss($ingredients);
