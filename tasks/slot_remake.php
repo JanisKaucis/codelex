@@ -60,27 +60,27 @@ class NewGame
     public int $symbolCount = 0;
     public int $multiSymbolWin = 0;
 
-    public function getPlayArray()
+    public function getPlayArray(): array
     {
         return $this->playArray;
     }
 
-    public function setPlayArray()
+    public function setPlayArray(): void
     {
         $this->playArray = [];
     }
 
-    public function getWinningArray()
+    public function getWinningArray(): array
     {
         return $this->winningElementArray;
     }
 
-    public function setWinningArray()
+    public function setWinningArray(): void
     {
         $this->winningElementArray = [];
     }
 
-    public function spinSlots($input)
+    public function spinSlots(Input $input): void
     {
         for ($i = 0; $i < 3; $i++) {
             $firstRandomElement = $rand_keys = array_rand($input->getElements());
@@ -95,7 +95,7 @@ class NewGame
         }
     }
 
-    public function freeSpins($input)
+    public function freeSpins(Input $input): void
     {
 
         $counter = 5 * $this->gCount;
@@ -163,7 +163,7 @@ class NewGame
         }
     }
 
-    public function game(Input $input)
+    public function game(Input $input): void
     {
         $input->enterSum();
         $input->enterBet();
@@ -236,7 +236,7 @@ class NewGame
     }
 
     public
-    function isWinning()
+    function isWinning(): void
     {
         if ($this->getPlayArray()[0] == $this->getPlayArray()[1] && $this->getPlayArray()[1] == $this->getPlayArray()[2]) {
             $this->winningElementArray[] = $this->getPlayArray()[0];
