@@ -63,16 +63,9 @@ class DogTest
 {
     public array $dogs = [];
 
-    public function main(): void
+    public function main(Dog $dog): void
     {
-        $this->dogs[] = new Dog('Max', 'male', 'Lady', 'Rocky');
-        $this->dogs[] = new Dog('Rocky', 'male', 'Molly', 'Sam');
-        $this->dogs[] = new Dog('Sparky', 'male', null, null);
-        $this->dogs[] = new Dog('Buster', 'male', 'Lady', 'Sparky');
-        $this->dogs[] = new Dog('Sam', 'male', null, null);
-        $this->dogs[] = new Dog('Lady', 'female', null, null);
-        $this->dogs[] = new Dog('Molly', 'female', null, null);
-        $this->dogs[] = new Dog('Coco', 'female', 'Molly', 'Buster');
+    $this->dogs[] = $dog;
     }
 
     public function getFathersName(string $name): void
@@ -97,7 +90,15 @@ class DogTest
 }
 
 $dogTest = new DogTest();
-$dogTest->main();
+$dogTest->main(new Dog('Max', 'male', 'Lady', 'Rocky'));
+$dogTest->main(new Dog('Rocky', 'male', 'Molly', 'Sam'));
+$dogTest->main(new Dog('Sparky', 'male', null, null));
+$dogTest->main(new Dog('Buster', 'male', 'Lady', 'Sparky'));
+$dogTest->main(new Dog('Sam', 'male', null, null));
+$dogTest->main(new Dog('Lady', 'female', null, null));
+$dogTest->main(new Dog('Molly', 'female', null, null));
+$dogTest->main(new Dog('Coco', 'female', 'Molly', 'Buster'));
+
 $dogTest->getFathersName('Coco');
 $dogTest->getFathersName('Sparky');
 $dogTest->hasSameMother('Coco', 'Rocky');
