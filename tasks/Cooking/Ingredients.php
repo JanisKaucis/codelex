@@ -8,13 +8,8 @@ class Ingredients
     {
         return $this->ingridients;
     }
-    public function addIngredients(): void
+    public function addIngredients($addedIngredient): void
     {
-        $ingredientAmount = intval(readline('How many ingredients will you add?'));
-        do{
-            $addedIngredient = readline('Add ingredient: ');
             $this->ingridients[] =  $addedIngredient;
-            $ingredientAmount--;
-        }while($ingredientAmount != 0);
     }
 }
