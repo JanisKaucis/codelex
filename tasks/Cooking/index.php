@@ -21,7 +21,7 @@ $cesarSalad = new Recipe('cesarSalad', ['tomato', 'cheese', 'cucumber', 'salad',
 $recipes->addRecipe($turboSalad);
 $recipes->addRecipe($cesarSalad);
 
-$recipes->whatCanIMake($ingredients);
-$recipes->whatDoIMiss($ingredients);
+echo $recipes->whatCanIMake($ingredients);
+echo $recipes->whatDoIMiss($ingredients);
 
 //todo partaisit lai metodes neizvada echo un ieteicams iznemt readline no metodem.

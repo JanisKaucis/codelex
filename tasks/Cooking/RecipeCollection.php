@@ -9,36 +9,39 @@ class RecipeCollection
         $this->recipes[] = $recipe;
     }
 
-    public function whatCanIMake(Ingredients $ingredients): void
+    public function whatCanIMake(Ingredients $ingredients): string
     {   /* @var $recipe Recipe */
+        $output = '';
         foreach ($this->recipes as $recipe) {
             $existingIngredients = array_intersect($recipe->getIngredients(), $ingredients->getIngredients());
             foreach ($existingIngredients as $ingredient){
                 if (!in_array($ingredient,$recipe->getIngredients())) {
-                    echo 'I wont make ' . $recipe->getName() . ' out of '.$ingredient. PHP_EOL;
+                    $output .= 'I wont make ' . $recipe->getName() . ' out of '.$ingredient. PHP_EOL;
                 } else {
-                    echo 'With '.$ingredient.' I can make ' . $recipe->getName() . PHP_EOL;
+                    $output .= 'With '.$ingredient.' I can make ' . $recipe->getName() . PHP_EOL;
                     }
             }
-
         }
+        return $output;
     }
 
-    public function whatDoIMiss(Ingredients $ingredients): void
+    public function whatDoIMiss(Ingredients $ingredients): string
     {   /* @var $recipe Recipe */
+        $output = '';
         foreach ($this->recipes as $recipe) {
             $existingIngredients = array_intersect($recipe->getIngredients(), $ingredients->getIngredients());
             $missingIngredients = array_diff($recipe->getIngredients(), $ingredients->getIngredients());
             if (count($existingIngredients) == count($recipe->getIngredients())) {
-                echo $recipe->getName() . ': You have all ingredients' . PHP_EOL;
+                $output .= $recipe->getName() . ': You have all ingredients' . PHP_EOL;
             } else {
-                echo $recipe->getName() . ': You are missing :';
+                $output .= $recipe->getName() . ': You are missing :';
                 foreach ($missingIngredients as $missingIngredient) {
-                    echo $missingIngredient . ' ';
+                    $output .=$missingIngredient . ' ';
                 }
-                echo PHP_EOL;
+                $output .= PHP_EOL;
             }
         }
+        return $output;
     }
 
 }
