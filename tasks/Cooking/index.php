@@ -23,3 +23,5 @@ $recipes->addRecipe($cesarSalad);
 
 $recipes->whatCanIMake($ingredients);
 $recipes->whatDoIMiss($ingredients);
+
+//todo partaisit lai metodes neizvada echo un ieteicams iznemt readline no metodem.
