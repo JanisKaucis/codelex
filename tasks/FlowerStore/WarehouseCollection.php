@@ -1,14 +1,16 @@
 <?php
+require_once 'interface.php';
 
-class WarehouseCollection
+class WarehouseCollection implements MaintanceAdd, MaintainceGet
 {
     public array $warehouses = [];
 
-    public function addWarehouse($warehouse)
+    public function add($input): void
     {
-        $this->warehouses[] = $warehouse;
+        $this->warehouses[] = $input;
     }
-    public function getWarehouses()
+
+    public function get(): array
     {
         return $this->warehouses;
     }

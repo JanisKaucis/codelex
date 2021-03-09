@@ -1,14 +1,16 @@
 <?php
+require_once 'interface.php';
 
-class FlowerCollection
+class FlowerCollection implements MaintanceAdd, MaintainceGet
 {
-    public array $collection =[];
+    public array $collection = [];
 
-    public function addFlower($flower)
+    public function add($input): void
     {
-        $this->collection[] = $flower;
+        $this->collection[] = $input;
     }
-    public function getFlowers(): array
+
+    public function get(): array
     {
         return $this->collection;
     }

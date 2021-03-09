@@ -1,6 +1,7 @@
 <?php
+require_once 'interface.php';
 
-class Warehouse
+class Warehouse implements MaintainceGet
 {
     public string $warehouseName;
     public array $flowersAndQuantity = [];
@@ -17,16 +18,9 @@ class Warehouse
         $this->warehouseName = $warehouseName;
         $this->flowersAndQuantity = $flowersAndQuantity;
     }
-    public function getFlowersAndQuantity(): array
+
+    public function get(): array
     {
         return $this->flowersAndQuantity;
-    }
-    public function getQuantityAndName(): void
-    {
-        foreach ($this->flowersAndQuantity as $name => $quantity)
-        {
-         $this->quantity[] = $quantity;
-         $this->flowerNames[] = $name;
-        }
     }
 }
