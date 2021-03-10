@@ -16,14 +16,7 @@ class Track
         $this->symbol = $symbol;
         $this->length = $length;
     }
-//public function drawTrack(): void
-//{
-//    $this->track = str_repeat(' '.$this->symbol.' ',$this->length);
-//}
-//public function getTrack(): string
-//{
-//    return $this->track;
-//}
+
 public function getSymbol(): string
 {
     return $this->symbol;
