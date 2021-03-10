@@ -39,7 +39,6 @@ class FlowerShop implements MaintainceGet
     public function getFlowerList(FlowerCollection $flowerCollection): string
     {
         /* @var $flower Flower */
-        /* @var $warehouse Warehouse */
         $output = '';
         foreach ($flowerCollection->get() as $flower) {
             foreach ($this->flowersInShop as $flowerName => $quantity) {

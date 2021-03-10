@@ -5,8 +5,6 @@ class Warehouse implements MaintainceGet
 {
     public string $warehouseName;
     public array $flowersAndQuantity = [];
-    public array $quantity = [];
-    public array $flowerNames = [];
 
     /**
      * Warehouse constructor.
