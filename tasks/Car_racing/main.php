@@ -17,9 +17,7 @@ $raceCollection->addRacer($car1);
 $raceCollection->addRacer($car2);
 $raceCollection->addRacer($bike1);
 $raceCollection->addRacer($bike2);
-//$race = new Race();
-//$race->drive($track,$raceCollection);
-//echo $race->getWinner($raceCollection);
+
 system('clear');
 $motion = [];
 $motion = $track->getTrack();
@@ -67,7 +65,6 @@ do {
 
 }while (in_array(0, $carsFinished));
 
-/* @var $car Car */
 
 $winnerArray = [];
 foreach ($raceCollection->getRacerCollection() as $racer){
