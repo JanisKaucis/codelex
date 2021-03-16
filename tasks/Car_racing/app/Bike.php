@@ -1,50 +1,54 @@
 <?php
+namespace App;
+require_once 'VehicleInterface.php';
 
-class Car
+class Bike implements VehicleInterface
 {
-    private string $car;
-    private string $crashedCar;
-    private string $carNumber;
+    private string $ride;
+    private string $crashedRide;
+    private string $rideNumber;
     private int $minSpeed;
     private int $maxSpeed;
     private int $racePosition = 0;
-    private int $carCrashStatus = 0;
-    private int $carFinnishStatus = 0;
-    private float $carFinnishTime = 0;
+    private int $rideCrashStatus = 0;
+    private int $rideFinnishStatus = 0;
+    private float $rideFinnishTime = 0;
     private int $crashRate;
-
     /**
      * Car constructor.
-     * @param int $carNumber
+     * @param string $rideNumber
+     * @param int $minSpeed
+     * @param int $maxSpeed
      */
-    public function __construct(string $carNumber,int $minSpeed,int $maxSpeed)
+    public function __construct(string $rideNumber, int $minSpeed, int $maxSpeed)
     {
-        $this->carNumber = $carNumber;
+        $this->rideNumber = $rideNumber;
         $this->minSpeed = $minSpeed;
         $this->maxSpeed = $maxSpeed;
-        $this->createCar();
-        $this->createCrashedCar();
-    }
-    public function getCarNumber(): string
-    {
-        return $this->carNumber;
+        $this->createRide();
+        $this->createCrashedRide();
     }
 
-    public function createCar():void
+    public function getRideNumber(): string
     {
-        $this->car = '['.$this->carNumber.'.]';
+        return $this->rideNumber;
     }
-    public function getCar(): string
+
+    public function createRide():void
     {
-        return $this->car;
+        $this->ride = '['.$this->rideNumber.'.o';
     }
-    public function createCrashedCar(): void
+    public function getRide(): string
     {
-        $this->crashedCar = 'X'.$this->carNumber.'.X';
+        return $this->ride;
     }
-    public function getCrashedCar(): string
+    public function createCrashedRide(): void
     {
-        return $this->crashedCar;
+        $this->crashedRide = 'X'.$this->rideNumber.'.x';
+    }
+    public function getCrashedRide(): string
+    {
+        return $this->crashedRide;
     }
     public function getMinSpeed(): int
     {
@@ -68,29 +72,29 @@ class Car
     }
     public function setFinnishTime($time): void
     {
-        $this->carFinnishTime += $time;
+        $this->rideFinnishTime += $time;
     }
     public function getFinnishTime(): float
     {
-        return $this->carFinnishTime;
+        return $this->rideFinnishTime;
     }
     public function setCrashStatus($value): void
     {
-        $this->carCrashStatus = $value;
+        $this->rideCrashStatus = $value;
     }
     public function getCrashStatus(): int
     {
-        return $this->carCrashStatus;
+        return $this->rideCrashStatus;
     }
     public function setFinnishStatus($value): void
     {
-        $this->carFinnishStatus = $value;
+        $this->rideFinnishStatus = $value;
     }
     public function getFinnishStatus(): int
     {
-        return $this->carFinnishStatus;
+        return $this->rideFinnishStatus;
     }
-    public function setCrashRate($value)
+    public function setCrashRate($value): void
     {
         $this->crashRate = $value;
     }

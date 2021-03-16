@@ -1,10 +1,11 @@
 <?php
+namespace App;
 
 class Track
 {
     private string $symbol;
     private int $length;
-   // private string $track;
+    private array $track;
 
     /**
      * Track constructor.
@@ -15,6 +16,7 @@ class Track
     {
         $this->symbol = $symbol;
         $this->length = $length;
+        $this->createTrack();
     }
 
 public function getSymbol(): string
@@ -24,6 +26,16 @@ public function getSymbol(): string
 public function getLenght(): int
 {
     return $this->length;
+}
+public function createTrack(): void
+{
+    for ($i=0;$i<=$this->length;$i++){
+        $this->track[] = ' '.$this->symbol.' ';
+    }
+}
+public function getTrack(): array
+{
+    return $this->track;
 }
 
 }

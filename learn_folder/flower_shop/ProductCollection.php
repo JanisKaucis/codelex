@@ -2,7 +2,7 @@
 
 class ProductCollection
 {
-private array $products;
+private array $products = [];
 
     /**
      * ProductCollection constructor.
@@ -10,9 +10,7 @@ private array $products;
      */
 //    public function __construct(array $products)
 //    {
-//        foreach ($products as $product){
-//            $this->add($product);
-//        }
+//        $this->products = []
 //    }
     public function add(Product $product,int $amount = 1): void
     {
@@ -26,5 +24,9 @@ private array $products;
             'product' => $product,
             'amount' => 1
         ];
+    }
+    public function all(): array
+    {
+        return $this->products;
     }
 }
